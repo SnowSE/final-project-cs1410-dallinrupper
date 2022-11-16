@@ -1,5 +1,7 @@
 ﻿using static DiceThrower.Dice;
 using System;
+using static CharacterCreation.CharacterFactory;
+using static CharacterCreation.Character;
 
 
 namespace MyApp
@@ -8,7 +10,32 @@ namespace MyApp
     {
         static void Main(string[] args)
         {
-            DiceThrower.Dice.Throw(1);
+            Console.WriteLine("Welcome player please create your character by pressing 'r' to roll.");
+            rollForCharacter();
+            // CharacterCreation.Character.Observe();
+
+
+            Console.WriteLine("You have woken up in The Labyrinth of the Black Desert.");
+
+        }
+        public static void rollForCharacter()
+        {
+            while (true)
+            {
+
+                var roll = Console.ReadLine();
+                if (roll == "r")
+                {
+                    var character = CharacterCreation.CharacterFactory.Generate();
+                    break;
+                    //return character;
+                }
+                else
+                {
+                    Console.WriteLine("Please enter r to roll.");
+                }
+            }
+
         }
     }
 }
