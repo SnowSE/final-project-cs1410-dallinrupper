@@ -4,12 +4,12 @@ namespace CharacterCreation
     internal class CharacterFactory
     {
         // The place where the game will roll and create the players stats and store them into the character class
-        static public Character Generate()
+        static public (int, int, int)Generate()
         {
-            int strength = DiceThrower.Dice.Throw();
-            int dexterity = DiceThrower.Dice.Throw();
+            int strength = DiceThrower.Dice.Throw20();
+            int dexterity = DiceThrower.Dice.Throw20();
             int maxLife = strength * 5;
-            var ret = new Character(strength, dexterity, maxLife);
+            var ret = (strength, dexterity, maxLife);
 
             return ret;
         }

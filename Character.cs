@@ -6,54 +6,38 @@ namespace CharacterCreation
 {
     public class Character
     {
-        int _strength;
-        int _dexterity;
-        int _life;
-        bool _isAlive;
-        // the players stats will be put into this method.
-        public Character(int strength, int dexterity, int maxLife)
-        {
-            _strength = strength;
-            _dexterity = dexterity;
-            _life = maxLife;
-            _isAlive = true;
-        }
         // the method for showing that the player was hit and seeing if they are still alive
-        public void Injure(int damage)
+        static public void Injure(int damage, ref int maxlife, ref bool isAlive)
         {
             Console.Write("Direct hit!");
-            _life -= damage;
-            if (_life <= 0)
+            maxlife -= damage;
+            if (maxlife <= 0)
             {
                 Console.Write("Death");
-                _isAlive = false;
+                isAlive = false;
             }
         }
         // the method for getting how much damage the player will do
-        public int Damage()
+        static public int Damage(int strength)
         {
-            int damage = _strength;
+            int damage = strength;
             return damage;
         }
         // the mthod to show the players stats throughout the game.
-        public string Observe()
+        static public void Observe(bool isAlive, int strength, int dexterity, int maxLife)
         {
             var description = new StringBuilder();
 
-            if (_isAlive)
+            if (isAlive)
             {
-
-                description.AppendLine($"Strength: {this._strength}");
-                description.AppendLine($"Dexterity: {this._dexterity}");
-                description.AppendLine($"Life: {this._life}");
-
+                Console.WriteLine("Strength:" + strength);
+                Console.WriteLine("Dexterity:" + dexterity);
+                Console.WriteLine("MaxLife:" + maxLife);
             }
             else
             {
-                description.AppendLine("Dead body");
+                Console.WriteLine("You are dead");
             }
-
-            return description.ToString();
         }
     }
 }
