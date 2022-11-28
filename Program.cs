@@ -14,6 +14,7 @@ namespace MyApp
             Console.WriteLine("Welcome player please create your character by pressing 'r' to roll.");
             (int strength, int dexterity, int maxLife) = rollForCharacter();
             Observe(true, strength, dexterity, maxLife);
+            bool isAlive = true;
 
             Console.WriteLine("You have woken up in The Labyrinth of the Black Desert.");
             Console.WriteLine("You see two doors which door do you choose?");
@@ -22,14 +23,15 @@ namespace MyApp
             {
                 try
                 {
-                    var second = Console.ReadLine();
+                    string? second = Console.ReadLine();
+                    string? fixSecond = second.ToLower();
 
-                    if (second == "Left")
+                    if (second == "left")
                     {
                         Console.WriteLine("You fall into a pit of lava and are burned alive");
                         return;
                     }
-                    else if (second == "Right")
+                    else if (second == "right")
                     {
                         Console.WriteLine("You open the door and see an enemy.");
                         break;
@@ -37,7 +39,7 @@ namespace MyApp
                     }
                     else
                     {
-                        Console.WriteLine("Please enther Left or Right.");
+                        Console.WriteLine("Please enter Left or Right.");
                     }
                 }
                 catch
@@ -47,17 +49,38 @@ namespace MyApp
             }
 
             Console.Clear();
+            (int Monster1Strength, int Monster1Dexterity, int Monster1Life) = Monsters.Monster.MonsterCreation();
             Console.WriteLine("You encounter your first Monster. Time to start combat.");
             int damage = Damage(strength);
+
             Console.WriteLine("Please press 'r' to roll to see if your attack hits.");
-            bool attackChance = rollForAttack();
-            if (attackChance == true)
+            while (Monster1Life > 0)
             {
 
-            }
-            else
-            {
-
+                bool attackChance = rollForAttackEasy();
+                if (attackChance == true)
+                {
+                    Console.WriteLine("Your attack suceeded.");
+                    int alive = Monsters.Monster.MonsterInjure(damage, ref Monster1Life);
+                    if (alive <= 0)
+                    {
+                        Console.WriteLine("You defeated the monster");
+                    }
+                    else
+                    {
+                        Console.WriteLine("The monster is still alive");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("You failed your attack and the monster attacks you.");
+                    isAlive = Injure(Monster1Strength, ref maxLife, ref isAlive);
+                    if(isAlive == false)
+                    {
+                        Console.WriteLine("You are dead.");
+                        break;
+                    }
+                }
             }
 
 
@@ -97,7 +120,7 @@ namespace MyApp
             }
 
         }
-        public static bool rollForAttack()
+        public static bool rollForAttackEasy()
         {
             while (true)
             {

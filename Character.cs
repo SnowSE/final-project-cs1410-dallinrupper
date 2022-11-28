@@ -7,14 +7,18 @@ namespace CharacterCreation
     public class Character
     {
         // the method for showing that the player was hit and seeing if they are still alive
-        static public void Injure(int damage, ref int maxlife, ref bool isAlive)
+        static public bool Injure(int damage, ref int maxlife, ref bool isAlive)
         {
-            Console.Write("Direct hit!");
+            Console.WriteLine("Direct hit!");
             maxlife -= damage;
             if (maxlife <= 0)
             {
-                Console.Write("Death");
                 isAlive = false;
+                return isAlive;
+            }
+            else
+            {
+                return isAlive;
             }
         }
         // the method for getting how much damage the player will do

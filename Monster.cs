@@ -12,9 +12,10 @@ namespace Monsters
             return ret;
         }
         
-        static public void MonsterInjure()
+        static public int MonsterInjure(int damage, ref int MonsterLife)
         {
-
+            MonsterLife -= damage;
+            return MonsterLife;
         }
     }
 }
