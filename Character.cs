@@ -11,6 +11,7 @@ namespace CharacterCreation
         {
             Console.WriteLine("Direct hit!");
             maxlife -= damage;
+            Console.WriteLine($"HP left: {maxlife}");
             if (maxlife <= 0)
             {
                 isAlive = false;
@@ -21,17 +22,16 @@ namespace CharacterCreation
                 return isAlive;
             }
         }
-        // the method for getting how much damage the player will do
-        static public int Damage(int strength)
+        // the method for getting how much damage the player will do multiplied by his item.
+        static public int DamageModified(int strength, Items item)
         {
-            int damage = strength;
+            int weapon = (int)item;
+            int damage = strength * weapon;
             return damage;
         }
-        // the mthod to show the players stats throughout the game.
+        // the method to show the players stats throughout the game.
         static public void Observe(bool isAlive, int strength, int dexterity, int maxLife)
         {
-            var description = new StringBuilder();
-
             if (isAlive)
             {
                 Console.WriteLine("Strength:" + strength);
@@ -43,5 +43,7 @@ namespace CharacterCreation
                 Console.WriteLine("You are dead");
             }
         }
+        public enum Items { Sword = 3, Knife = 2, Gun = 10, Sheild = 1, Rifle = 100 }
+
     }
 }
