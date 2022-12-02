@@ -13,6 +13,7 @@ namespace MyApp
             // Set up for game
             var watch = new System.Diagnostics.Stopwatch();
             Console.Clear();
+            string username = getUsername();
             Console.WriteLine("Welcome player please create your character by pressing 'r' to roll.");
             (int strength, int dexterity, int maxLife) = rollForCharacter();
             watch.Start();
@@ -27,15 +28,15 @@ namespace MyApp
             {
                 try
                 {
-                    string? second = Console.ReadLine();
-                    string? fixSecond = second.ToLower();
+                    string? choice = Console.ReadLine();
+                    string? fixChoice = choice.ToLower();
 
-                    if (fixSecond == "left")
+                    if (fixChoice == "left")
                     {
                         Console.WriteLine("You fall into a pit of lava and are burned alive");
                         return;
                     }
-                    else if (fixSecond == "right")
+                    else if (fixChoice == "right")
                     {
                         Console.WriteLine("You open the door and see an enemy.");
                         break;
@@ -95,15 +96,15 @@ namespace MyApp
             {
                 try
                 {
-                    string? second = Console.ReadLine();
-                    string? fixSecond = second.ToLower();
+                    string? choice = Console.ReadLine();
+                    string? fixChoice = choice.ToLower();
 
-                    if (fixSecond == "left")
+                    if (fixChoice == "left")
                     {
                         Console.WriteLine("You found an exit to the cave and can't go back now.");
                         return;
                     }
-                    else if (fixSecond == "right")
+                    else if (fixChoice == "right")
                     {
                         Console.WriteLine("You go through the hole and it closes behind you. You see a monster that is much bigger than before.");
                         break;
@@ -154,8 +155,7 @@ namespace MyApp
                 }
             }
             watch.Stop();
-            
-            //File.WriteAllText("Scores.txt", watch.Elapsed);
+            File.AppendAllText("HighScores.txt", $"{username}, {watch.Elapsed}\n");
             Console.WriteLine($"Time played: {watch.Elapsed}");
         }
 
@@ -163,7 +163,22 @@ namespace MyApp
 
 
 
-
+        public static string getUsername()
+        {
+            Console.WriteLine("Please enter your username.");
+            while(true)
+            {
+                try
+                {
+                    string? username = Console.ReadLine();
+                    return username;
+                }
+                catch
+                {
+                    Console.WriteLine("Please enter a valid username");
+                }
+            }
+        }
 
         public static (int, int, int) rollForCharacter()
         {
