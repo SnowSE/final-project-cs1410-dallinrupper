@@ -2,7 +2,7 @@
 using System;
 using static CharacterCreation.CharacterFactory;
 using static CharacterCreation.Character;
-
+using CharacterCreation;
 
 namespace MyApp
 {

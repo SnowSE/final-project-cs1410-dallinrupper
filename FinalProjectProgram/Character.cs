@@ -5,6 +5,8 @@ using System;
 using DiceThrower;
 namespace CharacterCreation
 {
+    public enum Items { Sword = 3, Knife = 2, Gun = 4, Sheild = 1, Rifle = 5 }
+    
     public class Character
     {
         // the method for showing that the player was hit and seeing if they are still alive
@@ -44,7 +46,6 @@ namespace CharacterCreation
                 Console.WriteLine("You are dead");
             }
         }
-        public enum Items { Sword = 3, Knife = 2, Gun = 4, Sheild = 1, Rifle = 5 }
 
         public static (int, int, int) rollForCharacter()
         {
