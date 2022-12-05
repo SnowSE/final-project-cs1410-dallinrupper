@@ -1,6 +1,6 @@
 namespace Monsters
 {
-    internal class Monster
+    public class Monster
     {
         static public (int, int, int) BasicMonsterCreation()
         {
@@ -22,7 +22,7 @@ namespace Monsters
 
         static public (int, int, int) FinalBossMonsterCreation()
         {
-            int bossStrength = DiceThrower.Dice.Throw50();
+            int bossStrength = DiceThrower.Dice.Throw100();
             int bossDexterity = DiceThrower.Dice.Throw100();
             int bossLife = bossStrength * 3;
             var ret = (bossStrength, bossDexterity, bossLife);
@@ -33,6 +33,15 @@ namespace Monsters
         {
             MonsterLife -= damage;
             return MonsterLife;
+        }
+
+        static public (int, int, int) DemonKingMonsterCreation()
+        {
+            int bossStrength = DiceThrower.Dice.Throw1000();
+            int bossDexterity = DiceThrower.Dice.Throw100();
+            int bossLife = bossStrength * 3;
+            var ret = (bossStrength, bossDexterity, bossLife);
+            return ret;
         }
     }
 }

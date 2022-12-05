@@ -2,7 +2,7 @@ using System;
 namespace DiceThrower
 {
 
-    internal class Dice
+    public class Dice
     {
         // The method for a D20 dice
         public static int Throw20()
@@ -17,12 +17,18 @@ namespace DiceThrower
             Random rnd = new Random();
             return rnd.Next(0, 50);
         }
-        
+
         // Method for D100 dice
         public static int Throw100()
         {
             Random rnd = new Random();
             return rnd.Next(0, 100);
+        }
+
+        public static int Throw1000()
+        {
+            Random rnd = new Random();
+            return rnd.Next(50, 1000);
         }
     }
 }
