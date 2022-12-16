@@ -91,9 +91,14 @@ namespace CharacterCreation
                     Observe(isAlive, strength, dexterity, maxLife);
                     Console.WriteLine("Press 'r' to roll or press 'o' to see your stats again.");
                 }
+                else if (roll == "x")
+                {
+                    Environment.Exit(1);
+                }
                 else
                 {
                     Console.WriteLine("Please enter 'r' to roll or press 'o' to see your stats.");
+
                 }
             }
 
